@@ -4,9 +4,9 @@
   "description": "Cursor plugin for Prisma: MCP server integration, rules, skills, and automation for database development",
   "author": {
     "name": "Prisma",
-    "email": "support@prisma.io",
-    "url": "https://www.prisma.io"
+    "email": "support@prisma.io"
   },
+  "logo": "assets/logo.png",
   "keywords": ["prisma", "database", "orm", "schema", "migration"],
-  "primaryColor": "#2D3748"
+  "hooks": "hooks.json"
 }
