@@ -1,5 +1,6 @@
 #!/bin/bash
-# Pre-commit hook to validate Prisma schema
+# Cursor beforeShellExecution hook: validate Prisma schema before "git commit".
+# Reads JSON from stdin (command, cwd). Outputs permission allow/deny JSON to stdout.
 
 set -e
 

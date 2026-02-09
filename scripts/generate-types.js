@@ -1,10 +1,9 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 /**
  * Generate TypeScript types after schema changes
  */
 
 import { execSync } from 'child_process';
-import * as path from 'path';
 
 async function generateTypes() {
   const schemaPath = process.argv[2] || 'prisma/schema.prisma';

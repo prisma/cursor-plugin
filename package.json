@@ -8,13 +8,7 @@
   ],
   "scripts": {
     "build": "npm run build --workspace=mcp-server",
-    "dev": "npm run dev --workspace=mcp-server",
-    "setup": "bash scripts/setup.sh",
-    "generate": "tsx scripts/generate.ts"
-  },
-  "devDependencies": {
-    "tsx": "^4.19.0",
-    "typescript": "^5.6.0"
+    "dev": "npm run dev --workspace=mcp-server"
   },
   "engines": {
     "node": ">=18"

@@ -1,18 +1,15 @@
 {
+  "version": 1,
   "hooks": {
-    "pre-commit": {
-      "command": "bash ./scripts/pre-commit.sh",
-      "description": "Validate Prisma schema before commit"
-    },
-    "post-save": {
-      "command": "node ./scripts/format-schema.js",
-      "description": "Auto-format Prisma schema files on save",
-      "filePattern": "**/*.prisma"
-    },
-    "on-schema-change": {
-      "command": "tsx ./scripts/generate-types.ts",
-      "description": "Generate TypeScript types after schema changes",
-      "filePattern": "prisma/schema.prisma"
-    }
+    "beforeShellExecution": [
+      {
+        "command": "./scripts/pre-commit.sh",
+        "matcher": "^git commit"
+      }
+    ],
+    "afterFileEdit": [
+      { "command": "node ./scripts/format-schema.js" },
+      { "command": "node ./scripts/generate-types.js" }
+    ]
   }
 }

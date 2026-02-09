@@ -4,7 +4,6 @@
  */
 
 const { execSync } = require('child_process');
-const path = require('path');
 
 const schemaPath = process.argv[2] || 'prisma/schema.prisma';
 
