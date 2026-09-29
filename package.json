@@ -1,9 +1,0 @@
-{
-  "name": "prisma-cursor-plugin",
-  "version": "0.1.0",
-  "description": "Cursor plugin for Prisma: hosted MCP server, rules, skills, and code generation",
-  "private": true,
-  "engines": {
-    "node": ">=18"
-  }
-}

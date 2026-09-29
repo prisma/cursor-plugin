@@ -1,6 +1,6 @@
 # Prisma Cursor Plugin
 
-The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, skills, and automation hooks for database development.
+The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, and Prisma 8 skills for database development.
 
 ## Features
 
@@ -13,11 +13,7 @@ The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, skill
 - **Migration Best Practices**: Guidelines for safe database migrations
 
 ### 🎯 Skills
-- Three short entry points for ORM, Composer, and platform work. They route to skills that match the project's Prisma versions.
-
-### ⚡ Automation Hooks
-- Validates the Prisma schema before `git commit` shell commands
-- Formats the schema and generates Prisma Client after agent edits to `.prisma` files
+- Three short entry points for Prisma 8 ORM, Composer, and platform work. They load the skills shipped with the project's Prisma packages.
 
 ## Installation
 
@@ -29,7 +25,7 @@ Open **Customize** in Cursor, find [Prisma](https://cursor.com/marketplace/prism
 
 1. Copy this repository into `~/.cursor/plugins/local/prisma` so that `.cursor-plugin/plugin.json` is inside that folder.
 2. Restart Cursor or run **Developer: Reload Window**.
-3. Open **Customize** and check that Prisma has one MCP server, plus its rules, skills, and hooks.
+3. Open **Customize** and check that Prisma has one MCP server, plus its rules and skills.
 
 Cursor loads local plugins only when local plugin imports are allowed. An installed Marketplace copy of Prisma takes precedence over a local copy with the same name.
 
@@ -49,13 +45,7 @@ The schema conventions rule applies to Prisma schema files. The migration best p
 
 Invoke `/prisma-orm`, `/prisma-composer`, or `/prisma-platform` in Cursor chat. Each skill checks the project and finds the instructions for that task.
 
-Prisma 8, Composer, and the current platform CLI ship detailed skills from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your installed CLI's `prisma skills sync` after adding or upgrading those packages. For Prisma 6 or 7, use the matching skills in [prisma/skills](https://github.com/prisma/skills); `skills sync` does not install them.
-
-### Automation Hooks
-
-Hooks run automatically on configured events:
-- Schema validation before commits
-- Schema formatting and Prisma Client generation after agent edits to `.prisma` files
+Prisma 8, Composer, and the platform CLI ship detailed skills from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your project's installed `prisma skills sync` after adding or upgrading those packages.
 
 ## Project Structure
 
@@ -67,11 +57,6 @@ prisma-cursor-plugin/
 │   ├── schema-conventions.mdc
 │   └── migration-best-practices.mdc
 ├── skills/                   # Three short skills that load project guidance
-├── scripts/
-│   ├── pre-commit.sh
-│   ├── format-schema.js
-│   └── generate-types.js
-├── hooks.json                # Hook definitions
 ├── mcp.json                  # MCP server configuration
 └── README.md
 ```
@@ -81,7 +66,6 @@ For plugin structure, MCP configuration, and local testing, use Cursor's current
 ## Requirements
 
 - A Prisma account and workspace for the hosted MCP server
-- Node.js >= 18 and the Prisma CLI for the local automation hooks
 
 ## Contributing
 
