@@ -1,5 +1,5 @@
 ---
-name: prisma-platform-guidance
+name: prisma-platform
 description: Use for Prisma Postgres, Compute, Object Storage, or other Prisma platform CLI work. Load the platform skill shipped with the project's Prisma CLI.
 ---
 

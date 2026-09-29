@@ -1,5 +1,5 @@
 ---
-name: prisma-composer-guidance
+name: prisma-composer
 description: Use when writing, testing, or deploying a Prisma Composer app. Load the Composer skill that matches the project's installed package.
 ---
 

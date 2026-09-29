@@ -1,5 +1,5 @@
 ---
-name: prisma-orm-guidance
+name: prisma-orm
 description: Use for Prisma ORM setup, schema, queries, migrations, runtime code, or upgrades. Find the guidance that matches the project's installed Prisma version.
 ---
 
