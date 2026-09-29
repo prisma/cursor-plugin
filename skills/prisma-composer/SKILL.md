@@ -5,7 +5,7 @@ description: Use when writing, testing, or deploying a Prisma Composer app. Read
 
 # Prisma Composer
 
-1. Check the project's installed `@prisma/composer` version, if any.
-2. Read `.cursor/skills/prisma-composer-core-concepts/SKILL.md` and its references if the project has them. If Composer and the Prisma 8 CLI are installed but the skill is missing, run `prisma skills sync` through the project's package manager and read the synced copy.
-3. If no project copy is available, read the official [Composer skill](https://github.com/prisma/composer/blob/main/skills/prisma-composer-core-concepts/SKILL.md) and the relevant references beside it. Use a source revision matching the installed Composer version when possible; use the current source for a new project.
-4. If neither source can be read, use the [Composer documentation](https://www.prisma.io/docs/composer) and say which guidance was unavailable. Do not invent Composer APIs or deploy commands.
+1. Check the installed `@prisma/composer` version, if any.
+2. Find `prisma-composer-core-concepts/SKILL.md` in `.cursor/skills`, `.agents/skills`, or another project skill directory Cursor reads. Use it only when its `metadata.library_version` matches the installed Composer package. If missing or stale, run the installed CLI's `prisma skills sync` through the project's package manager, or read the skill shipped inside the installed Composer package.
+3. If no usable local copy is available, read the official [Composer skill](https://github.com/prisma/composer/blob/main/skills/prisma-composer-core-concepts/SKILL.md) and its relevant references. Prefer a source revision matching the installed package; use the current source for a new project.
+4. If the skill cannot be read, say so and use the [Composer documentation](https://www.prisma.io/docs/composer). Do not invent Composer APIs or deploy commands.

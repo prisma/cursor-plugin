@@ -5,7 +5,7 @@ description: Use for Prisma 8 ORM setup, schemas, queries, migrations, or upgrad
 
 # Prisma ORM
 
-1. Check the project's installed ORM package version, if any.
-2. Read `.cursor/skills/prisma-8/SKILL.md` and the references it selects if the project has them. If the ORM package and Prisma 8 CLI are installed but the skill is missing, run `prisma skills sync` through the project's package manager and read the synced copy.
-3. If no project copy is available, read the official [Prisma 8 skill](https://github.com/prisma/orm/blob/main/skills/prisma-8/SKILL.md) and the relevant references beside it. Use a source revision matching the installed ORM version when possible; use the current source for a new project.
-4. If neither source can be read, use the [Prisma ORM documentation](https://www.prisma.io/docs/orm) and say which guidance was unavailable. Do not guess at an API.
+1. Check the installed `@prisma/orm-*` version. To implement Prisma 8 in a new project without one, follow the [Prisma 8 setup guide](https://www.prisma.io/docs/getting-started) first; the ORM skill requires an installed package and emitted contract.
+2. Find `prisma-8/SKILL.md` in `.cursor/skills`, `.agents/skills`, or another project skill directory Cursor reads. Use it only when its `metadata.library_version` matches the installed ORM package. If missing or stale, run the installed CLI's `prisma skills sync` through the project's package manager, or read the skill shipped inside the installed ORM package.
+3. If no usable local copy is available, read the official [Prisma 8 skill](https://github.com/prisma/orm/blob/main/skills/prisma-8/SKILL.md) and its relevant references. Prefer a source revision matching the installed package; use the current source for a new project after setup.
+4. If the skill cannot be read, say so and use the [Prisma ORM documentation](https://www.prisma.io/docs/orm). Do not guess at an API.

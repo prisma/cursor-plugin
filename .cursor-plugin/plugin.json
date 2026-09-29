@@ -1,11 +1,11 @@
 {
   "name": "prisma",
   "version": "1.0.0",
-  "description": "The official Prisma plugin for Cursor: hosted MCP server, rules, and links to Prisma 8 skills",
+  "description": "The official Prisma plugin for Cursor: hosted MCP server and Prisma 8 skill pointers",
   "author": {
     "name": "Prisma",
     "email": "support@prisma.io"
   },
   "logo": "assets/logo.svg",
-  "keywords": ["prisma", "database", "orm", "schema", "migration", "postgres", "mysql", "sqlite"]
+  "keywords": ["prisma", "database", "orm", "schema", "migration", "postgres", "sqlite", "mongodb", "compute", "composer"]
 }
