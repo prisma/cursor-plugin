@@ -1,180 +1,87 @@
 # Prisma Cursor Plugin
 
-A comprehensive Cursor plugin for Prisma development, providing MCP server integration, AI rules, specialized skills, custom agents, and automation hooks.
+The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, skills, and automation hooks for database development.
 
 ## Features
 
 ### 🔌 MCP Server Integration
-- Direct integration with Prisma MCP server
-- Database introspection and querying
-- Schema management through AI
+- Connects to the hosted Prisma MCP server at `https://mcp.prisma.io/mcp`
+- Lets you manage Prisma Postgres databases, Prisma Compute deployments, and Object Storage in your selected workspace
 
 ### 📋 Rules
 - **Schema Conventions**: Enforces Prisma naming conventions and best practices
 - **Migration Best Practices**: Guidelines for safe database migrations
 
 ### 🎯 Skills
-- **Schema Designer**: Design and modify Prisma schemas following best practices
-- **Migration Manager**: Safely create, deploy, and manage database migrations
-
-### 🤖 Custom Agents
-- **Prisma Expert**: Comprehensive Prisma development expertise
-- **Schema Reviewer**: Specialized schema review and optimization
+- Three short entry points for ORM, Composer, and platform work. They load the detailed skills shipped with the project's Prisma packages.
 
 ### ⚡ Automation Hooks
-- **Pre-commit**: Validates Prisma schema before commits
-- **Post-save**: Auto-formats Prisma schema files on save
-- **On-schema-change**: Regenerates TypeScript types after schema changes
+- Validates the Prisma schema before `git commit` shell commands
+- Formats the schema and generates Prisma Client after file edits
 
 ## Installation
 
 ### From Cursor Marketplace
-```bash
-# Install via Cursor CLI
-cursor plugin install prisma-cursor-plugin
-```
 
-### Manual Installation
-1. Clone this repository
-2. Copy to your Cursor plugins directory
-3. Run setup script:
-```bash
-npm run setup
-```
+Open **Customize** in Cursor, find [Prisma](https://cursor.com/marketplace/prisma), and select **Install**. Choose a project or user scope. You can also use `/add-plugin prisma` in Cursor chat.
+
+### Test a local copy
+
+1. Copy this repository into `~/.cursor/plugins/local/prisma` so that `.cursor-plugin/plugin.json` is inside that folder.
+2. Restart Cursor or run **Developer: Reload Window**.
+3. Open **Customize** and check that Prisma has one MCP server, plus its rules, skills, and hooks.
+
+Cursor loads local plugins only when local plugin imports are allowed. An installed Marketplace copy of Prisma takes precedence over a local copy with the same name.
 
 ## Configuration
 
-### Database Connection
-
-Create a `.env` file in your project root:
-
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
-```
-
 ### MCP Server
 
-The Prisma MCP server is automatically configured. Ensure your `DATABASE_URL` environment variable is set.
+The plugin configures the hosted server automatically. On first use, sign in with your Prisma account and select a workspace. The hosted MCP connection does not use your project's `DATABASE_URL`. A Prisma CLI command or app using your own database may still need that variable.
 
 ## Usage
 
 ### Using Rules
 
-Rules are automatically applied to your Prisma schema files:
-- Schema conventions enforce naming standards
-- Migration best practices guide safe database changes
+The schema conventions rule applies to Prisma schema files. The migration best practices rule is available when needed.
 
 ### Using Skills
 
-Invoke skills via Cursor AI:
-- `/schema-designer` - Design new schemas or modify existing ones
-- `/migration-manager` - Create and manage migrations
+Invoke `/prisma-orm-guidance`, `/prisma-composer-guidance`, or `/prisma-platform-guidance` in Cursor chat. Each skill checks the project, syncs its installed Prisma skills, and reads the matching instructions.
 
-### Using Agents
-
-Switch to custom agents in Cursor:
-- **Prisma Expert**: For general Prisma development tasks
-- **Schema Reviewer**: For schema reviews and optimization
+The detailed skills come from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your installed CLI's `prisma skills sync` after adding or upgrading Prisma packages to keep the project copies current.
 
 ### Automation Hooks
 
 Hooks run automatically on configured events:
 - Schema validation before commits
-- Auto-formatting on save
-- Type generation after schema changes
+- Schema formatting and Prisma Client generation after file edits
 
 ## Project Structure
 
 ```
 prisma-cursor-plugin/
-├── .cursor/
+├── .cursor-plugin/
 │   └── plugin.json           # Plugin manifest
 ├── rules/
 │   ├── schema-conventions.mdc
 │   └── migration-best-practices.mdc
-├── skills/
-│   ├── schema-designer/
-│   │   └── SKILL.md
-│   └── migration-manager/
-│       └── SKILL.md
-├── agents/
-│   ├── prisma-expert.md
-│   └── schema-reviewer.md
+├── skills/                   # Three short skills that load project guidance
 ├── scripts/
-│   ├── setup.sh
 │   ├── pre-commit.sh
 │   ├── format-schema.js
-│   └── generate-types.ts
+│   └── generate-types.js
 ├── hooks.json                # Hook definitions
 ├── mcp.json                  # MCP server configuration
-├── package.json
 └── README.md
 ```
 
-## Development
-
-### Scripts
-
-```bash
-# Setup the plugin
-npm run setup
-
-# Build MCP server (when implemented)
-npm run build
-
-# Development mode (when implemented)
-npm run dev
-
-# Run code generation scripts
-npm run generate
-```
+For plugin structure, MCP configuration, and local testing, use Cursor's current [plugin reference](https://cursor.com/docs/reference/plugins) and [installation guide](https://cursor.com/docs/plugins).
 
 ## Requirements
 
-- Node.js >= 18
-- Prisma CLI (installed automatically by setup)
-- Database connection (PostgreSQL, MySQL, SQLite, etc.)
-
-## Examples
-
-### Creating a Schema
-
-```prisma
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  posts     Post[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([email])
-}
-
-model Post {
-  id          Int      @id @default(autoincrement())
-  title       String
-  content     String?
-  published   Boolean  @default(false)
-  authorId    Int
-  author      User     @relation(fields: [authorId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([authorId])
-  @@index([published])
-}
-```
-
-### Creating a Migration
-
-```bash
-# Create and apply migration
-npx prisma migrate dev --name add_user_posts
-
-# Deploy to production
-npx prisma migrate deploy
-```
+- A Prisma account and workspace for the hosted MCP server
+- Node.js >= 18 and the Prisma CLI for the local automation hooks
 
 ## Contributing
 

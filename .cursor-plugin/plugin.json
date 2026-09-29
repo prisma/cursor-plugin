@@ -1,5 +1,5 @@
 {
-  "name": "Prisma",
+  "name": "prisma",
   "version": "1.0.0",
   "description": "The official Prisma plugin for Cursor: MCP server integration, rules, skills, and automation for database development",
   "author": {
