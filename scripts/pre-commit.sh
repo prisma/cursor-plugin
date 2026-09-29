@@ -1,23 +1,21 @@
 #!/bin/bash
 # Cursor beforeShellExecution hook: validate Prisma schema before "git commit".
-# Reads JSON from stdin (command, cwd). Outputs permission allow/deny JSON to stdout.
+# Outputs a Cursor permission decision as JSON.
 
 set -e
 
-echo "🔍 Validating Prisma schema..."
-
 # Check if schema file exists
 if [ ! -f "prisma/schema.prisma" ]; then
-  echo "⚠️  No Prisma schema found at prisma/schema.prisma"
+  printf '{"permission":"allow"}\n'
   exit 0
 fi
 
-# Validate schema syntax
 if command -v npx &> /dev/null; then
-  npx prisma validate
-  echo "✅ Prisma schema is valid"
+  if npx --no-install prisma validate >&2; then
+    printf '{"permission":"allow"}\n'
+  else
+    printf '{"permission":"deny","user_message":"Prisma schema validation failed."}\n'
+  fi
 else
-  echo "⚠️  npx not found, skipping validation"
+  printf '{"permission":"allow"}\n'
 fi
-
-exit 0

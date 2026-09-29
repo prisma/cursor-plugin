@@ -3,23 +3,20 @@
  * Generate TypeScript types after schema changes
  */
 
-import { execSync } from 'child_process';
+const { execFileSync } = require('node:child_process');
+const { readFileSync } = require('node:fs');
 
-async function generateTypes() {
-  const schemaPath = process.argv[2] || 'prisma/schema.prisma';
-  
-  try {
-    console.log('🔄 Generating Prisma Client types...');
-    
-    execSync(`npx prisma generate --schema=${schemaPath}`, {
-      stdio: 'inherit'
-    });
-    
-    console.log('✅ Types generated successfully');
-  } catch (error) {
-    console.error('❌ Failed to generate types:', error);
-    process.exit(1);
-  }
+const { file_path: schemaPath } = JSON.parse(readFileSync(0, 'utf8'));
+
+if (!schemaPath?.endsWith('.prisma')) {
+  process.exit(0);
 }
 
-generateTypes();
+try {
+  execFileSync('npx', ['--no-install', 'prisma', 'generate', `--schema=${schemaPath}`], {
+    stdio: ['ignore', 'ignore', 'inherit']
+  });
+} catch (error) {
+  console.error('Failed to generate Prisma Client:', error.message);
+  process.exit(1);
+}

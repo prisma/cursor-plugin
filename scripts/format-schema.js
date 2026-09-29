@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 /**
- * Auto-format Prisma schema files on save
+ * Auto-format Prisma schema files after agent edits
  */
 
-const { execSync } = require('child_process');
+const { execFileSync } = require('node:child_process');
+const { readFileSync } = require('node:fs');
 
-const schemaPath = process.argv[2] || 'prisma/schema.prisma';
+const { file_path: schemaPath } = JSON.parse(readFileSync(0, 'utf8'));
+
+if (!schemaPath?.endsWith('.prisma')) {
+  process.exit(0);
+}
 
 try {
-  console.log(`📝 Formatting ${schemaPath}...`);
-  execSync(`npx prisma format --schema=${schemaPath}`, {
-    stdio: 'inherit'
+  execFileSync('npx', ['--no-install', 'prisma', 'format', `--schema=${schemaPath}`], {
+    stdio: ['ignore', 'ignore', 'inherit']
   });
-  console.log('✅ Schema formatted successfully');
 } catch (error) {
-  console.error('❌ Failed to format schema:', error.message);
+  console.error('Failed to format Prisma schema:', error.message);
   process.exit(1);
 }

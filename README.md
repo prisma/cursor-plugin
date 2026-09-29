@@ -13,11 +13,11 @@ The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, skill
 - **Migration Best Practices**: Guidelines for safe database migrations
 
 ### 🎯 Skills
-- Three short entry points for ORM, Composer, and platform work. They load the detailed skills shipped with the project's Prisma packages.
+- Three short entry points for ORM, Composer, and platform work. They route to skills that match the project's Prisma versions.
 
 ### ⚡ Automation Hooks
 - Validates the Prisma schema before `git commit` shell commands
-- Formats the schema and generates Prisma Client after file edits
+- Formats the schema and generates Prisma Client after agent edits to `.prisma` files
 
 ## Installation
 
@@ -47,15 +47,15 @@ The schema conventions rule applies to Prisma schema files. The migration best p
 
 ### Using Skills
 
-Invoke `/prisma-orm`, `/prisma-composer`, or `/prisma-platform` in Cursor chat. Each skill checks the project, syncs its installed Prisma skills, and reads the matching instructions.
+Invoke `/prisma-orm`, `/prisma-composer`, or `/prisma-platform` in Cursor chat. Each skill checks the project and finds the instructions for that task.
 
-The detailed skills come from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your installed CLI's `prisma skills sync` after adding or upgrading Prisma packages to keep the project copies current.
+Prisma 8, Composer, and the current platform CLI ship detailed skills from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your installed CLI's `prisma skills sync` after adding or upgrading those packages. For Prisma 6 or 7, use the matching skills in [prisma/skills](https://github.com/prisma/skills); `skills sync` does not install them.
 
 ### Automation Hooks
 
 Hooks run automatically on configured events:
 - Schema validation before commits
-- Schema formatting and Prisma Client generation after file edits
+- Schema formatting and Prisma Client generation after agent edits to `.prisma` files
 
 ## Project Structure
 
