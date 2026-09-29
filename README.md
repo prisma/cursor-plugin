@@ -13,7 +13,7 @@ The Prisma plugin for Cursor provides the hosted Prisma MCP server, rules, and P
 - **Migration Best Practices**: Guidelines for safe database migrations
 
 ### 🎯 Skills
-- Three short entry points for Prisma 8 ORM, Composer, and platform work. They load the skills shipped with the project's Prisma packages.
+- Two short entry points for Prisma 8 ORM and Composer work. They load the skills shipped with the project's Prisma packages.
 
 ## Installation
 
@@ -43,9 +43,9 @@ The schema conventions rule applies to Prisma schema files. The migration best p
 
 ### Using Skills
 
-Invoke `/prisma-orm`, `/prisma-composer`, or `/prisma-platform` in Cursor chat. Each skill checks the project and finds the instructions for that task.
+Invoke `/prisma-orm` or `/prisma-composer` in Cursor chat. Each skill checks the project and reads the matching instructions.
 
-Prisma 8, Composer, and the platform CLI ship detailed skills from [prisma/orm](https://github.com/prisma/orm/tree/main/skills/prisma-8), [prisma/composer](https://github.com/prisma/composer/tree/main/skills/prisma-composer-core-concepts), and [prisma/prisma-cli](https://github.com/prisma/prisma-cli/tree/main/skills/prisma-platform-core-concepts). Run your project's installed `prisma skills sync` after adding or upgrading those packages.
+Run your project's installed `prisma skills sync` after adding or upgrading Prisma 8 ORM or Composer packages. The command copies their skills into the project's `.cursor/skills` directory.
 
 ## Project Structure
 
@@ -56,7 +56,7 @@ prisma-cursor-plugin/
 ├── rules/
 │   ├── schema-conventions.mdc
 │   └── migration-best-practices.mdc
-├── skills/                   # Three short skills that load project guidance
+├── skills/                   # Two short skills that load project guidance
 ├── mcp.json                  # MCP server configuration
 └── README.md
 ```
