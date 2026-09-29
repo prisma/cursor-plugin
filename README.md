@@ -1,6 +1,6 @@
 # Prisma Cursor Plugin
 
-The Prisma plugin for Cursor provides the hosted Prisma MCP server and database rules.
+The Prisma plugin for Cursor provides the hosted Prisma MCP server, database rules, and short entry points to the official Prisma 8 skills.
 
 ## Features
 
@@ -12,6 +12,9 @@ The Prisma plugin for Cursor provides the hosted Prisma MCP server and database 
 - **Schema Conventions**: Enforces Prisma naming conventions and best practices
 - **Migration Best Practices**: Guidelines for safe database migrations
 
+### 🎯 Skills
+- `prisma-orm` and `prisma-composer` link to the official skills. They use a project copy when available and the official source when it is not.
+
 ## Installation
 
 ### From Cursor Marketplace
@@ -22,7 +25,7 @@ Open **Customize** in Cursor, find [Prisma](https://cursor.com/marketplace/prism
 
 1. Copy this repository into `~/.cursor/plugins/local/prisma` so that `.cursor-plugin/plugin.json` is inside that folder.
 2. Restart Cursor or run **Developer: Reload Window**.
-3. Open **Customize** and check that Prisma has one MCP server and two rules.
+3. Open **Customize** and check that Prisma has one MCP server, two rules, and two skills.
 
 Cursor loads local plugins only when local plugin imports are allowed. An installed Marketplace copy of Prisma takes precedence over a local copy with the same name.
 
@@ -38,9 +41,9 @@ The plugin configures the hosted server automatically. On first use, sign in wit
 
 The schema conventions rule applies to Prisma schema files. The migration best practices rule is available when needed.
 
-### Prisma 8 project skills
+### Using Skills
 
-Run your project's installed `prisma skills sync` after adding or upgrading Prisma 8 ORM or Composer packages. Cursor discovers the copied skills in `.cursor/skills` automatically.
+Invoke `/prisma-orm` or `/prisma-composer` in Cursor chat. Each entry point reads the matching skill in the project when one exists. If it does not, it points Cursor to the official source, so the plugin still works in a new project. Run `prisma skills sync` in a project with Prisma 8 packages to keep its local copies in step with the installed version.
 
 ## Project Structure
 
@@ -51,6 +54,9 @@ prisma-cursor-plugin/
 ├── rules/
 │   ├── schema-conventions.mdc
 │   └── migration-best-practices.mdc
+├── skills/
+│   ├── prisma-orm/SKILL.md
+│   └── prisma-composer/SKILL.md
 ├── mcp.json                  # MCP server configuration
 └── README.md
 ```
