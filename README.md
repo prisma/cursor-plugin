@@ -1,6 +1,6 @@
 # Prisma Cursor Plugin
 
-The Prisma plugin for Cursor provides the hosted Prisma MCP server and short entry points to the official Prisma 8 skills.
+The Prisma plugin for Cursor connects the hosted Prisma MCP server, for Prisma Postgres databases and deployed Prisma Compute apps, and adds short entry points to the official Prisma 8 skills. It needs a Prisma account, and the MCP server does not upload or build your code.
 
 ## Features
 

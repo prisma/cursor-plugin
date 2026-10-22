@@ -1,11 +1,11 @@
 {
   "name": "prisma",
-  "version": "1.0.0",
-  "description": "The official Prisma plugin for Cursor: hosted MCP server and Prisma 8 skill pointers",
+  "version": "1.0.1",
+  "description": "Prisma Postgres (managed PostgreSQL) and Prisma Compute (TypeScript app hosting) in Cursor: the hosted Prisma MCP server for databases and deployed apps, plus Prisma 8 ORM and Prisma Composer skills. Needs a Prisma account; the MCP server does not upload code.",
   "author": {
     "name": "Prisma",
     "email": "support@prisma.io"
   },
   "logo": "assets/logo.svg",
-  "keywords": ["prisma", "database", "orm", "schema", "migration", "postgres", "sqlite", "mongodb", "compute", "composer"]
+  "keywords": ["prisma", "database", "orm", "schema", "migration", "postgres", "sqlite", "mongodb", "compute", "composer", "prisma-postgres", "prisma-compute", "hosting"]
 }
